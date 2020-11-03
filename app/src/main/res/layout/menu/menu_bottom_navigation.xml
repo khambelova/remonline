@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile_menu_btn"
+        android:icon="@drawable/man"
+        android:title="@string/profile"/>
+
+    <item
+        android:id="@+id/schedule_menu_btn"
+        android:icon="@drawable/schedule"
+        android:title="@string/schedule"/>
+
+    <item
+        android:id="@+id/register_menu_btn"
+        android:icon="@drawable/register"
+        android:title="@string/register_short"/>
+
+    <item
+        android:id="@+id/student_points_menu_btn"
+        android:icon="@drawable/assesment"
+        android:title="@string/student_points_abbr"/>
+</menu>

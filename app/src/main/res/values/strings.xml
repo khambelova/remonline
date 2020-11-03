@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LineService</string>
+    <string name="repair_cost">Узнать стоимость ремонта</string>
+    <string name="order_status">Проверить статус заказа</string>
+    <string name="problem_name">Введите название проблемы</string>
+    <string name="phoneNumber">+7-(  ) -  - </string>
+</resources>
