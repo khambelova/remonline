@@ -6,19 +6,20 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/problemEditText"
+        android:id="@+id/phoneNumberEditText"
         android:layout_margin="16dp"
         android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/phoneNumber" />
+        android:hint="@string/enter_phone_number" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/problemRecycler"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
-
-
+    <Button
+        android:layout_margin="16dp"
+        android:layout_gravity="right"
+        android:id="@+id/orderStatusBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/order_status"
+        android:textSize="15sp"
+        />
 </LinearLayout>

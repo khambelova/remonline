@@ -18,7 +18,6 @@ public class RepairCostActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText problemEditText;
     List<Problem> problemList = new ArrayList<>();
-    List<Problem> appropriateProblemList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,14 +36,14 @@ public class RepairCostActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<Problem> appropriateProblemList = new ArrayList<>();
+
                 String enteredText = problemEditText.getText().toString();
                 for (Problem problem : problemList) {
-                    if (problem.getProblemName().contains(enteredText)){
+                    if (problem.getProblemName().toLowerCase().contains(enteredText.toLowerCase())){
                         appropriateProblemList.add(problem);
-                        //TODO: Очищать ресайклер и сделать ту ловеркейс
                     }
                 }
-
                 createRecyclerView(appropriateProblemList);
             }
 
@@ -55,44 +54,29 @@ public class RepairCostActivity extends AppCompatActivity {
         });
     }
 
-    private void createRecyclerView (List<Problem> problemList){
+    private void createRecyclerView (List<Problem> problemListInRecycler){
         recyclerView = (RecyclerView)findViewById(R.id.problemRecycler);
-        ProblemDataAdapter adapter = new ProblemDataAdapter(this,problemList);
+        ProblemDataAdapter adapter = new ProblemDataAdapter(this,problemListInRecycler);
         recyclerView.setAdapter(adapter);
     }
 
-   private void setInitialData(){
+    private void setInitialData(){
         problemList.add(new Problem("Сломался телефон","1500"));
-       problemList.add(new Problem("Сломалась стиральная машина","5000"));
-       problemList.add(new Problem("Сломалась машина","15000"));
-       problemList.add(new Problem("Сломалась посудомоечная машина","1000"));
-       problemList.add(new Problem("Выключился ноутбук","2000"));
-       problemList.add(new Problem("Сломался ноутбук","1500"));
-       problemList.add(new Problem("Села батарейка","500"));
-       problemList.add(new Problem("Плата слетела","4000"));
-       problemList.add(new Problem("Сломался компьютер","2500"));
-       problemList.add(new Problem("Сломался системный блок","3500"));
-       problemList.add(new Problem("Сломался телефон","1500"));
-       problemList.add(new Problem("Сломалась стиральная машина","5000"));
-       problemList.add(new Problem("Сломалась машина","15000"));
-       problemList.add(new Problem("Сломалась посудомоечная машина","1000"));
-       problemList.add(new Problem("Выключился ноутбук","2000"));
-       problemList.add(new Problem("Сломался ноутбук","1500"));
-       problemList.add(new Problem("Села батарейка","500"));
-       problemList.add(new Problem("Плата слетела","4000"));
-       problemList.add(new Problem("Сломался компьютер","2500"));
-       problemList.add(new Problem("Сломался системный блок","3500"));
-       problemList.add(new Problem("Сломался телефон","1500"));
-       problemList.add(new Problem("Сломалась стиральная машина","5000"));
-       problemList.add(new Problem("Сломалась машина","15000"));
-       problemList.add(new Problem("Сломалась посудомоечная машина","1000"));
-       problemList.add(new Problem("Выключился ноутбук","2000"));
-       problemList.add(new Problem("Сломался ноутбук","1500"));
-       problemList.add(new Problem("Села батарейка","500"));
-       problemList.add(new Problem("Плата слетела","4000"));
-       problemList.add(new Problem("Сломался компьютер","2500"));
-       problemList.add(new Problem("Сломался системный блок","3500"));
-
+        problemList.add(new Problem("Сломалась стиральная машина","5000"));
+        problemList.add(new Problem("Сломалась машина","15000"));
+        problemList.add(new Problem("Сломалась посудомоечная машина","1000"));
+        problemList.add(new Problem("Выключился ноутбук","2000"));
+        problemList.add(new Problem("Сломался ноутбук","1500"));
+        problemList.add(new Problem("Села батарейка","500"));
+        problemList.add(new Problem("Плата слетела","4000"));
+        problemList.add(new Problem("Сломался компьютер","2500"));
+        problemList.add(new Problem("Сломался системный блок","3500"));
+        problemList.add(new Problem("Выключился телефон","1500"));
+        problemList.add(new Problem("Не включается телевизор","4000"));
+        problemList.add(new Problem("Разбился экран монитора","1500"));
+        problemList.add(new Problem("Разбился экран телефона","500"));
+        problemList.add(new Problem("Поломались наушники","4000"));
+        problemList.add(new Problem("Сломалась мышь","2500"));
     }
 
 }
