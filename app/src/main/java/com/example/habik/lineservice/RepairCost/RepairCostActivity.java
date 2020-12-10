@@ -1,15 +1,16 @@
-package com.example.habik.lineservice;
+package com.example.habik.lineservice.RepairCost;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.example.habik.lineservice.R;
+import com.example.habik.lineservice.RepairCost.Problem;
+import com.example.habik.lineservice.RepairCost.ProblemDataAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
