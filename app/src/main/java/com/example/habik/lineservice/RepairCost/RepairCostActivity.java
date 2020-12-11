@@ -7,13 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.habik.lineservice.API.NetworkService;
+import com.example.habik.lineservice.Main.Constants;
+import com.example.habik.lineservice.Main.MainActivity;
 import com.example.habik.lineservice.R;
-import com.example.habik.lineservice.RepairCost.Problem;
-import com.example.habik.lineservice.RepairCost.ProblemDataAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RepairCostActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -25,8 +31,7 @@ public class RepairCostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repair_cost);
 
-        setInitialData();
-        createRecyclerView(problemList);
+        getAllServices();
 
         problemEditText = (EditText)findViewById(R.id.problemEditText);
         problemEditText.addTextChangedListener(new TextWatcher() {
@@ -61,23 +66,24 @@ public class RepairCostActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void setInitialData(){
-        problemList.add(new Problem("Сломался телефон","1500"));
-        problemList.add(new Problem("Сломалась стиральная машина","5000"));
-        problemList.add(new Problem("Сломалась машина","15000"));
-        problemList.add(new Problem("Сломалась посудомоечная машина","1000"));
-        problemList.add(new Problem("Выключился ноутбук","2000"));
-        problemList.add(new Problem("Сломался ноутбук","1500"));
-        problemList.add(new Problem("Села батарейка","500"));
-        problemList.add(new Problem("Плата слетела","4000"));
-        problemList.add(new Problem("Сломался компьютер","2500"));
-        problemList.add(new Problem("Сломался системный блок","3500"));
-        problemList.add(new Problem("Выключился телефон","1500"));
-        problemList.add(new Problem("Не включается телевизор","4000"));
-        problemList.add(new Problem("Разбился экран монитора","1500"));
-        problemList.add(new Problem("Разбился экран телефона","500"));
-        problemList.add(new Problem("Поломались наушники","4000"));
-        problemList.add(new Problem("Сломалась мышь","2500"));
+    private void getAllServices(){
+
+        NetworkService.getInstance().getJSONApi().getServicesPrices(MainActivity.currentToken).enqueue(new Callback<Services>() {
+            @Override
+            public void onResponse(Call<Services> call, Response<Services> response) {
+                Services services = response.body();
+                for (int i = 0; i < services.getData().length; i++) {
+                    problemList.add(new Problem(services.getData()[i].getProblemName(),services.getData()[i].getProblemCost().replace(".0","")));
+                }
+                createRecyclerView(problemList);
+            }
+
+            @Override
+            public void onFailure(Call<Services> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), Constants.NETWORK_ERROR,Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
 }

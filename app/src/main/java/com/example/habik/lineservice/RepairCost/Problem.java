@@ -1,8 +1,16 @@
 package com.example.habik.lineservice.RepairCost;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Problem {
 
+    @SerializedName("title")
+    @Expose
     private String problemName;
+
+    @SerializedName("price")
+    @Expose
     private String problemCost;
 
     public Problem(String problemName, String problemCost) {
